@@ -6,9 +6,7 @@ import { fileURLToPath } from "url";
 import path from "path";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-// Get the site URL from environment variables, or use the default value if not set
-// Note: After the first deployment, be sure to set the correct PUBLIC_SITE_URL in the .env file
-const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://ricofast.pages.dev/';
+const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://nexitally.world';
 
 // https://astro.build/config
 export default defineConfig({
@@ -28,5 +26,16 @@ export default defineConfig({
     port: 5200,
   },
 
-  integrations: [mdx(), sitemap()],
+  integrations: [
+    mdx(),
+    sitemap({
+      filter: (page) => {
+        // Exclude pagination duplicate page 1 and error page
+        return !page.includes('/blog/page/1') && 
+               !page.includes('/404') && 
+               !page.includes('/sign-in') && 
+               !page.includes('/sign-up');
+      }
+    })
+  ],
 });

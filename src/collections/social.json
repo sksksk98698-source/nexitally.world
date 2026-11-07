@@ -1,68 +1,30 @@
 [
 	{
-        "id": 1,
-		"name": "Github",
-        "username": "ricocc",
-		"image": "/assets/social/social-github.jpg",
-		"url": "https://github.com/ricocc/"
+		"id": 1,
+		"name": "Telegram",
+		"username": "nexitally_channel",
+		"image": "/assets/logo.png",
+		"url": "https://t.me/nexitally_channel"
 	},
-
 	{
-        "id": 2,
-		"name": "Xiaohongshu",
-        "username": "ricouii",
-		"image": "/assets/social/social-xiaohongshu.jpg",
-		"url": "https://www.xiaohongshu.com/user/profile/5f2b6903000000000101f51f"
-	},
-
-    {
-        "id": 3,
+		"id": 2,
 		"name": "Twitter",
-        "username": "ricouii",
-		"image": "/assets/social/social-twitter.jpg",
-		"url": "https://x.com/ricouii"
+		"username": "nexitally",
+		"image": "/assets/logo.png",
+		"url": "https://x.com/nexitally"
 	},
-
-    {
-        "id": 4,
-		"name": "Gumroad",
-        "username": "ricoui",
-		"image": "/assets/social/social-gumroad.jpg",
-		"url": "https://ricoui.gumroad.com/"
+	{
+		"id": 3,
+		"name": "Official Website",
+		"username": "nexitally.world",
+		"image": "/assets/logo.png",
+		"url": "https://nexitally.world"
 	},
-
-    {
-        "id": 5,
-		"name": "Behance",
-        "username": "ricoui",
-		"image": "/assets/social/social-behance.jpg",
-		"url": "https://www.behance.net/ricoui"
-	},
-
-    {
-        "id": 6,
-		"name": "figma",
-        "username": "ricocc",
-		"image": "/assets/social/social-figma.jpg",
-		"url": "https://www.figma.com/@ricocc",
-        "isShow": false
-	},
-
-    {
-        "id": 7,
-		"name": "Dribbble",
-        "username": "ricoui",
-		"image": "/assets/social/social-dribbble.jpg",
-		"url": "https://dribbble.com/ricoui"
-	},
-
-    {
-        "id": 8,
+	{
+		"id": 4,
 		"name": "Email",
-        "username": "ricocc",
-		"image": "/assets/social/social-email.jpg",
-		"url": "mailto:ricocc@qq.com"
+		"username": "support",
+		"image": "/assets/logo.png",
+		"url": "mailto:support@nexitally.world"
 	}
-
-
 ]

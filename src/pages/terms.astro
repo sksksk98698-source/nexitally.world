@@ -1,0 +1,74 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import PageHeader from "@/components/elements/PageHeader.astro";
+import { siteConfig } from "@/config/site";
+import { FileText, AlertTriangle, RefreshCw } from "@lucide/astro";
+---
+
+<Layout
+  title="服务条款 (TOS) — Nexitally 官方网站"
+  description="Nexitally 服务条款（Terms of Service），规范用户权利、合理使用原则及服务保障条款。"
+  keywords="Nexitally服务条款, TOS, 合理使用政策"
+>
+  <main class="site-container py-12 md:py-20">
+    <div class="max-w-3xl mx-auto">
+      <PageHeader
+        title="服务条款 (Terms of Service)"
+        description="规范合理使用 · 共同维护稳定纯净的专线网络环境"
+      />
+
+      <div class="mt-10 space-y-8 text-sm text-neutral-600 dark:text-neutral-300 leading-relaxed border-t border-dashed border-neutral-200 dark:border-neutral-700 pt-8">
+        <div>
+          <h2 class="text-lg font-bold text-neutral-800 dark:text-neutral-100 mb-3 flex items-center gap-2">
+            <FileText class="w-5 h-5 text-primary" />
+            1. 服务接纳与履约
+          </h2>
+          <p>
+            当您在 Nexitally 注册账号并订购相关套餐时，即视为您已阅读并同意本服务条款。Nexitally 承诺按照所选套餐规格提供高品质专线网络访问资源。
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-lg font-bold text-neutral-800 dark:text-neutral-100 mb-3 flex items-center gap-2">
+            <AlertTriangle class="w-5 h-5 text-amber-500" />
+            2. 合理使用与禁止行为（AUP）
+          </h2>
+          <p>
+            为保障全体用户的专线时延与公信力，严禁利用 Nexitally 专线从事以下活动：
+          </p>
+          <ul class="list-disc list-inside mt-2 space-y-1.5 text-xs md:text-sm pl-2">
+            <li>运行公网 BT / PT 下载、非法大范围端口扫描或发起 DDoS/CC 网络攻击；</li>
+            <li>发送垃圾邮件（Spam）、进行金融欺诈、黑客入侵或窃取他人数据；</li>
+            <li>向公众转售或恶意共享个人订阅链接；</li>
+            <li>违反服务器所在地法律法规的任何违法犯罪活动。</li>
+          </ul>
+          <p class="mt-2 text-xs text-neutral-500">
+            一经系统监测到上述滥用行为，Nexitally 有权在不予退款的前提下暂停或永久终止对应账户服务。
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-lg font-bold text-neutral-800 dark:text-neutral-100 mb-3 flex items-center gap-2">
+            <RefreshCw class="w-5 h-5 text-primary" />
+            3. 计费、周期与退款政策
+          </h2>
+          <p>
+            用户购买套餐即时开通。8.25 元/月为年付套餐折算后平均月成本，年付为一次性结算；致敬斯诺克 147 永久套餐为一次性买断 247GB 流量，无有效期过期限制。
+          </p>
+          <p class="mt-2">
+            由于网络数字虚拟商品的特殊性与专线骨干独占成本，套餐开通后产生流量消耗即视为已交付。如遇不可抗力导致严重链路中断，支持提交工单按剩余时长折算处理。
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-lg font-bold text-neutral-800 dark:text-neutral-100 mb-3">
+            4. 官方授权与解释权
+          </h2>
+          <p>
+            本网站 <code>nexitally.world</code> 享有品牌方官方授权。在适用法律法规允许的最大限度内，Nexitally 拥有对本服务条款的最终解释权。
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>

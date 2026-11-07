@@ -4,136 +4,184 @@ import PageHeader from "@/components/elements/PageHeader.astro";
 import Button from "@/components/ui/Button.astro";
 import Badge from "@/components/ui/Badge.astro";
 import { siteConfig } from "@/config/site";
-import { ArrowRight, Heart, Code, Users, GitBranch, GitFork } from "@lucide/astro";
+import { ArrowRight, ShieldCheck, Server, Cpu, Globe2, Award, CheckCircle2, BookOpen } from "@lucide/astro";
 
 const timeline = [
   {
-    version: "v0.1",
-    date: "May 2026",
-    title: "First sketches",
-    desc: "Started as a side project — a designer-built SaaS template that didn't look like a template. Hero, three feature cards, a pricing page. ",
+    version: "2020",
+    date: "品牌成立与专线奠基",
+    title: "自建 IEPL 专线骨干",
+    desc: "Nexitally 正式启动运营。告别传统脆弱的公网直连模式，斥资接入物理 IEPL 专线，专注为对网络稳定性有严苛要求的用户提供专属服务。",
+    link: "/blog/iepl-network-architecture/",
+    linkText: "IEPL 专线物理架构深度解析"
   },
   {
-    version: "v0.2",
-    date: "May 2026",
-    title: "Initial public release",
-    desc: "Nine pages, fifteen sections, dark mode, MDX blog and changelog. Released on GitHub under MIT. First wave of forks and bug reports — most of them turned into v1.1 features.",
+    version: "2021",
+    date: "专线扩容与全球部署",
+    title: "单节点 2.5Gbps 与多机房热备",
+    desc: "完成亚太核心骨干带宽扩容，全面升级单节点最高 2.5Gbps 吞吐能力，香港、日本、新加坡、美国核心数据中心完成双向冗余部署。",
+    link: "/pricing/",
+    linkText: "查看全球专线节点规格"
   },
   {
-    version: "v0.3",
-    date: "May 2026",
-    title: "Content layer + polish",
-    desc: "Migrated to Astro Content Layer API. Tightened dark mode contrast, cut cold-build time by 30%, added the BrowserFrame reusable component. See the launch post for details.",
+    version: "2022",
+    date: "现代化协议架构升级",
+    title: "原生引入 VLESS 协议栈",
+    desc: "针对传统协议握手开销大、特征容易暴露的痛点，全面适配轻量化 VLESS 协议，网络时延与抗抖动能力大幅跃升。",
+    link: "/blog/vless-protocol-advantages/",
+    linkText: "VLESS 协议技术优势分析"
   },
   {
-    version: "v1.0",
-    date: "May 2026",
-    title: "Story-first refresh",
-    desc: "Refocused around a coherent virtual brand to make the demo feel like a real product. Cleaned portfolio leftovers, rewrote section copy, upgraded every visual placeholder.",
+    version: "2023",
+    date: "客户端生态革新",
+    title: "推出跨平台官方自研客户端",
+    desc: "覆盖 Windows、macOS、Android、iOS 全平台自研客户端发布，实现零配置一键测速与故障自愈，同时保留第三方客户端订阅兼容。",
+    link: "/blog/client-setup-guide/",
+    linkText: "全平台客户端配置速成指南"
+  },
+  {
+    version: "2024-至今",
+    date: "AI与流媒体全场景优化",
+    title: "原生 IP 广播与全天候高可用",
+    desc: "针对 ChatGPT、Claude 等前沿大模型与海外 4K 流媒体深化优化，提供全节点 1 倍率公平计费与致敬斯诺克 147 永久套餐。",
+    link: "/blog/ai-and-streaming-unlock/",
+    linkText: "AI 与海外流媒体解锁实测策略"
   },
 ];
 ---
 
 <Layout
-  title="About — RicoFast"
-  description="Learn about RicoFast, a design-led SaaS template built with Astro and Tailwind CSS."
+  title="关于我们 — Nexitally 官方网站"
+  description="了解 Nexitally 的品牌历程、专线基础设施建设理念与官方授权说明。自 2020 年稳定运营至今。"
+  keywords="Nexitally介绍, Nexitally关于我们, Nexitally发展历史, 官方授权声明"
 >
-  <section class="site-container my-12">
+  <section class="site-container my-10">
     <PageHeader
-      title="A template that doesn't feel like one"
-      description="Built for makers who care about how their product is presented. Open-source under MIT — fork it, ship with it, sell what you build on top."
+      title="稳健运营 · 专注于高品质专线网络"
+      description="自 2020 年创立至今，Nexitally 始终坚持用扎实的物理专线与先进的协议技术，为用户打磨值得长久信赖的网络基石。"
     />
   </section>
 
-  <section class="site-container max-w-3xl mx-auto pb-24">
-    <article class="space-y-10">
+  <section class="site-container max-w-3xl mx-auto pb-20">
+    <article class="space-y-12">
 
-      <!-- Why we built it -->
+      <!-- Brand Mission -->
       <div data-aos="fade-up-xs" data-aos-once="true">
-        <h2 class="text-2xl font-brand text-neutral-800 dark:text-neutral-100 mb-4">Why we built RicoFast</h2>
-        <div class="space-y-4 text-neutral-600 dark:text-neutral-300 leading-relaxed">
+        <h2 class="text-2xl font-brand font-bold text-neutral-800 dark:text-neutral-100 mb-4">
+          我们的初心与坚持
+        </h2>
+        <div class="space-y-4 text-sm md:text-base text-neutral-600 dark:text-neutral-300 leading-relaxed">
           <p>
-            Most open-source SaaS templates fall into one of two camps. Some are bare-bones starters — a hero, three feature cards, a pricing page — and you spend the next two weeks rebuilding everything else. Others are maximalist bundles with eighty sections you'll never use, four color themes you'll never pick, and a build pipeline you don't fully understand.
+            在跨境网络加速领域，许多服务商往往追求短期暴利：采用低成本的公网中转，在晚高峰网络拥堵时频繁断流；设置虚高复杂的计费倍率；甚至频繁更换品牌跑路。
           </p>
           <p>
-            RicoFast is made for founders & startups. Nine pages that cover what a real SaaS site actually needs. Fifteen-plus section components you mix and match. A documented design system that holds together even after you swap the content. Restraint over bloat.
+            Nexitally 走的是完全不同的道路。我们坚信：<strong>真正的品牌价值来自于长周期的稳定性与用户口碑</strong>。从 2020 年诞生之日起，我们就锁定企业级物理专线（IEPL/IPLC）架构，坚持全节点真实 1 倍率计费，绝不虚构浮夸的营销数据。
           </p>
           <p>
-            We picked Astro because zero JavaScript by default keeps marketing sites fast, even as you add sections. We picked Tailwind v4 because the new <code class="text-primary">@theme</code> token system makes rebranding a one-file edit. We picked Instrument Serif + Inter because the pairing gives the template editorial weight without being precious about it.
+            无论是日常查阅资料、跨国远程协同办公、跨境电商出海，还是深度使用 ChatGPT、Midjourney 与欣赏 4K 流媒体，Nexitally 都致力于成为您最安心、最稳定的网络伙伴。
           </p>
         </div>
       </div>
 
       <div class="w-full border-b border-dashed border-neutral-200 dark:border-neutral-700"></div>
 
-      <!-- Values -->
-      <div data-aos="fade-up-xs" data-aos-delay="100" data-aos-once="true">
-        <h2 class="text-2xl font-brand text-neutral-800 dark:text-neutral-100 mb-6">What we care about</h2>
+      <!-- Core Values -->
+      <div data-aos="fade-up-xs" data-aos-once="true">
+        <h2 class="text-2xl font-brand font-bold text-neutral-800 dark:text-neutral-100 mb-6">
+          四大核心准则
+        </h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div class="p-5 rounded-xl bg-bg-secondary dark:bg-bg-secondary-dark border border-primary/10 dark:border-neutral-700">
-            <Code class="w-5 h-5 text-primary mb-3" />
-            <h3 class="text-sm font-semibold text-neutral-800 dark:text-neutral-100 mb-1">Clean code</h3>
-            <p class="text-sm text-neutral-500 dark:text-neutral-400">Readable, maintainable, and well-structured. Every component follows the same conventions.</p>
+          <div class="p-5 rounded-2xl bg-bg-secondary dark:bg-bg-secondary-dark border border-primary/10 dark:border-neutral-700">
+            <Server class="w-6 h-6 text-primary mb-3" />
+            <h3 class="text-base font-bold text-neutral-800 dark:text-neutral-100 mb-1">重资投入物理专线</h3>
+            <p class="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed mb-3">
+              坚持采用高品质 IEPL / IPLC 专线，拒绝公网拥堵，晚高峰依旧稳定如初。
+            </p>
+            <a href="/blog/iepl-network-architecture/" class="text-xs text-primary font-semibold hover:underline">专线架构原理解析 →</a>
           </div>
-          <div class="p-5 rounded-xl bg-bg-secondary dark:bg-bg-secondary-dark border border-primary/10 dark:border-neutral-700">
-            <Users class="w-5 h-5 text-primary mb-3" />
-            <h3 class="text-sm font-semibold text-neutral-800 dark:text-neutral-100 mb-1">User-first design</h3>
-            <p class="text-sm text-neutral-500 dark:text-neutral-400">Accessibility and usability are non-negotiable. Every component is tested in both light and dark mode.</p>
+          <div class="p-5 rounded-2xl bg-bg-secondary dark:bg-bg-secondary-dark border border-primary/10 dark:border-neutral-700">
+            <ShieldCheck class="w-6 h-6 text-primary mb-3" />
+            <h3 class="text-base font-bold text-neutral-800 dark:text-neutral-100 mb-1">诚信透明无虚标</h3>
+            <p class="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed mb-3">
+              全节点统一 1 倍率，不玩花哨套路扣费；不虚构用户数据与刷假评论。
+            </p>
+            <a href="/pricing/" class="text-xs text-primary font-semibold hover:underline">浏览全系列套餐资费 →</a>
           </div>
-          <div class="p-5 rounded-xl bg-bg-secondary dark:bg-bg-secondary-dark border border-primary/10 dark:border-neutral-700">
-            <Heart class="w-5 h-5 text-primary mb-3" />
-            <h3 class="text-sm font-semibold text-neutral-800 dark:text-neutral-100 mb-1">Thoughtful craft</h3>
-            <p class="text-sm text-neutral-500 dark:text-neutral-400">Spacing, typography, and motion are deliberate, not default. The details add up.</p>
+          <div class="p-5 rounded-2xl bg-bg-secondary dark:bg-bg-secondary-dark border border-primary/10 dark:border-neutral-700">
+            <Cpu class="w-6 h-6 text-primary mb-3" />
+            <h3 class="text-base font-bold text-neutral-800 dark:text-neutral-100 mb-1">技术驱动协议迭代</h3>
+            <p class="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed mb-3">
+              深度调优轻量 VLESS 协议，自研全平台客户端，并兼备全第三方客户端兼容。
+            </p>
+            <a href="/blog/vless-protocol-advantages/" class="text-xs text-primary font-semibold hover:underline">VLESS 协议深度评测 →</a>
           </div>
-          <div class="p-5 rounded-xl bg-bg-secondary dark:bg-bg-secondary-dark border border-primary/10 dark:border-neutral-700">
-            <GitBranch class="w-5 h-5 text-primary mb-3" />
-            <h3 class="text-sm font-semibold text-neutral-800 dark:text-neutral-100 mb-1">Open by default</h3>
-            <p class="text-sm text-neutral-500 dark:text-neutral-400">MIT-licensed, no vendor lock-in, no attribution required. Roadmap shaped by what people actually build.</p>
+          <div class="p-5 rounded-2xl bg-bg-secondary dark:bg-bg-secondary-dark border border-primary/10 dark:border-neutral-700">
+            <Globe2 class="w-6 h-6 text-primary mb-3" />
+            <h3 class="text-base font-bold text-neutral-800 dark:text-neutral-100 mb-1">全平台客户端生态</h3>
+            <p class="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed mb-3">
+              支持 Windows/macOS/iOS/Android 官方自研客户端及 Clash、小火箭导入。
+            </p>
+            <a href="/blog/client-setup-guide/" class="text-xs text-primary font-semibold hover:underline">客户端安装与导入教程 →</a>
           </div>
         </div>
       </div>
 
       <div class="w-full border-b border-dashed border-neutral-200 dark:border-neutral-700"></div>
 
-      <!-- Timeline -->
-      <div data-aos="fade-up-xs" data-aos-delay="100" data-aos-once="true">
-        <h2 class="text-2xl font-brand text-neutral-800 dark:text-neutral-100 mb-6">How we got here</h2>
-        <div class="relative">
-          <div class="absolute left-3 md:left-4 top-1.5 bottom-1.5 w-px bg-neutral-200 dark:bg-neutral-700"></div>
-          <ol class="space-y-8">
-            {timeline.map((item, i) => (
-              <li class="relative pl-10 md:pl-12" data-aos="fade-up-sm" data-aos-delay={i * 80} data-aos-once="true">
-                <div class="absolute left-1.5 md:left-2.5 top-1.5 w-3 h-3 rounded-full bg-primary border-2 border-bg-primary dark:border-bg-primary-dark"></div>
-                <div class="mb-1 flex items-center gap-3 flex-wrap">
-                  <Badge variant="primary" size="sm">{item.version}</Badge>
-                  <span class="text-xs text-neutral-400 dark:text-neutral-500">{item.date}</span>
-                </div>
-                <h3 class="text-base font-semibold text-neutral-800 dark:text-neutral-100 mb-1">{item.title}</h3>
-                <p class="text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed">{item.desc}</p>
-              </li>
-            ))}
-          </ol>
+      <!-- Timeline with Backlinks -->
+      <div data-aos="fade-up-xs" data-aos-once="true">
+        <h2 class="text-2xl font-brand font-bold text-neutral-800 dark:text-neutral-100 mb-6">
+          稳健发展历程
+        </h2>
+        <div class="space-y-6 border-l-2 border-primary/20 dark:border-neutral-700 ml-3 pl-6">
+          {timeline.map((item) => (
+            <div class="relative group">
+              <div class="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-primary ring-4 ring-bg-primary dark:ring-bg-primary-dark"></div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="text-xs font-bold text-primary">{item.version}</span>
+                <span class="text-xs text-neutral-400">· {item.date}</span>
+              </div>
+              <h3 class="text-base font-bold text-neutral-800 dark:text-neutral-100 mb-1">{item.title}</h3>
+              <p class="text-xs md:text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed mb-2">{item.desc}</p>
+              {item.link && (
+                <a href={item.link} class="text-xs font-medium text-primary hover:underline inline-flex items-center gap-1">
+                  {item.linkText} →
+                </a>
+              )}
+            </div>
+          ))}
         </div>
       </div>
 
       <div class="w-full border-b border-dashed border-neutral-200 dark:border-neutral-700"></div>
 
-      <!-- Open source -->
-      <div data-aos="fade-up-xs" data-aos-delay="100" data-aos-once="true">
-        <h2 class="text-2xl font-brand text-neutral-800 dark:text-neutral-100 mb-4">Open source</h2>
-        <p class="text-neutral-600 dark:text-neutral-300 leading-relaxed mb-6">
-          RicoFast is MIT-licensed on GitHub. Open issues, send PRs, suggest features. The roadmap is steered by what people are actually trying to ship.
-        </p>
+      <!-- Official Authorization Section -->
+      <div id="authorization" class="p-6 md:p-8 rounded-3xl bg-primary/5 border border-primary/20" data-aos="fade-up-xs" data-aos-once="true">
+        <div class="flex items-start gap-4">
+          <div class="w-10 h-10 rounded-2xl bg-primary/10 text-primary flex items-center justify-center flex-shrink-0 mt-1">
+            <Award class="w-5 h-5" />
+          </div>
+          <div>
+            <h3 class="text-lg font-bold text-neutral-900 dark:text-neutral-50 mb-2">
+              品牌官方授权说明
+            </h3>
+            <p class="text-xs md:text-sm text-neutral-600 dark:text-neutral-300 leading-relaxed mb-4">
+              本网站（域名：<code>nexitally.world</code>）为品牌方官方授权建设之独立品牌官网落地页。本站承担官方形象展示、产品套餐介绍、用户注册转化与技术指南发布等核心职能。
+            </p>
+            <p class="text-xs text-neutral-500 dark:text-neutral-400">
+              全站用户注册通道均经官方安全鉴权，所有专线节点资源与计费规则均与 Nexitally 官方系统实时同步。
+            </p>
+          </div>
+        </div>
       </div>
 
-      <div class="flex flex-wrap gap-4" data-aos="fade-up-xs" data-aos-delay="200" data-aos-once="true">
-        <Button url={siteConfig.social.github} type="fill" target="_blank">
-          <GitFork size={16} /> Star on GitHub <ArrowRight size={16} />
-        </Button>
-        <Button url="/changelog">
-          View Changelog
+      <!-- Action -->
+      <div class="text-center pt-4" data-aos="fade-up-xs" data-aos-once="true">
+        <Button url={siteConfig.registerUrl} rel="nofollow sponsored" target="_blank" type="fill" className="px-8 py-3.5 text-base">
+          立即开通 Nexitally 官方账户 <ArrowRight class="w-4 h-4 ml-1.5" />
         </Button>
       </div>
+
     </article>
   </section>
 </Layout>

@@ -6,7 +6,7 @@ interface Props {
 }
 
 const {
-  url = "ricoui.com",
+  url = "nexitally.world",
   variant = "auto",
   className = "",
 } = Astro.props;
@@ -23,33 +23,27 @@ const chromeClass =
     ? "border-neutral-200/50 bg-neutral-50"
     : variant === "dark"
     ? "border-neutral-700/50 bg-neutral-800/50"
-    : "border-neutral-200/50 dark:border-neutral-700/50 bg-neutral-50 dark:bg-neutral-800/50";
-
-const addressClass =
-  variant === "light"
-    ? "bg-neutral-200/50 text-neutral-500"
-    : variant === "dark"
-    ? "bg-neutral-700/50 text-neutral-400"
-    : "bg-neutral-200/50 dark:bg-neutral-700/50 text-neutral-500 dark:text-neutral-400";
+    : "border-neutral-200/50 dark:border-neutral-700/50 bg-neutral-50/50 dark:bg-neutral-800/50";
 ---
 
-<div class={`relative rounded-2xl overflow-hidden border shadow-lg ${surfaceClass} ${className}`}>
-  <!-- Browser chrome -->
-  <div class={`flex items-center gap-2 px-4 py-3 border-b ${chromeClass}`}>
-    <div class="flex gap-1.5">
-      <div class="w-3 h-3 rounded-full bg-red-400"></div>
-      <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
-      <div class="w-3 h-3 rounded-full bg-green-400"></div>
+<div class={`rounded-2xl border ${surfaceClass} overflow-hidden shadow-sm ${className}`}>
+  <!-- Chrome toolbar -->
+  <div class={`flex items-center gap-2 px-3.5 py-2 border-b ${chromeClass}`}>
+    <div class="flex items-center gap-1.5">
+      <span class="w-2.5 h-2.5 rounded-full bg-red-400/80"></span>
+      <span class="w-2.5 h-2.5 rounded-full bg-amber-400/80"></span>
+      <span class="w-2.5 h-2.5 rounded-full bg-emerald-400/80"></span>
     </div>
     <div class="flex-1 flex justify-center">
-      <div class={`px-4 py-1 rounded-md text-xs ${addressClass}`}>
+      <span class="px-4 py-0.5 rounded-md bg-bg-primary/60 dark:bg-neutral-900/60 border border-neutral-200/40 dark:border-neutral-700/40 text-[11px] text-neutral-400 font-mono tracking-tight">
         {url}
-      </div>
+      </span>
     </div>
+    <div class="w-10"></div>
   </div>
 
-  <!-- Slot for body content -->
-  <div class="relative">
+  <!-- Content slot -->
+  <div>
     <slot />
   </div>
 </div>

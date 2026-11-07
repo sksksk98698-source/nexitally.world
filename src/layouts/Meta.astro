@@ -1,5 +1,6 @@
 ---
 import { siteConfig } from '@/config/site.js';
+
 export interface Props {
   title?: string;
   description?: string;
@@ -7,39 +8,110 @@ export interface Props {
   url?: string;
   ogImage?: string;
   twitterHandle?: string;
+  robots?: string;
+  schema?: Record<string, any> | Array<Record<string, any>>;
 }
 
 const {
-  title,
-  description,
-  keywords = "",
-  url = siteConfig.url, //
+  title = siteConfig.meta.title,
+  description = siteConfig.meta.description,
+  keywords = siteConfig.meta.keywords,
+  url,
   ogImage = "/og.jpg",
-  twitterHandle = siteConfig.social.twitterName || '',
+  twitterHandle = siteConfig.social.twitterName || 'nexitally',
+  robots = "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+  schema
 } = Astro.props;
+
+// Compute clean absolute canonical URL
+const canonicalURL = url ? url : new URL(Astro.url.pathname, siteConfig.url).href;
+const absoluteOgImage = new URL(ogImage, siteConfig.url).href;
+
+// Base Organization & WebSite Schemas (Entity SEO & GEO Authority)
+const baseSchemas: any[] = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": `${siteConfig.url}/#organization`,
+    "name": "Nexitally",
+    "alternateName": ["Nexitally World", "奶昔机场", "Nexitally 专线"],
+    "url": siteConfig.url,
+    "logo": `${siteConfig.url}/assets/logo.png`,
+    "description": "Nexitally 专注于企业级物理专线（IEPL/IPLC）与现代 VLESS 协议的跨境网络加速服务，自 2020 年稳定运营至今。",
+    "sameAs": [
+      siteConfig.social.twitterUrl,
+      siteConfig.social.telegramUrl
+    ].filter(Boolean)
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${siteConfig.url}/#website`,
+    "url": siteConfig.url,
+    "name": "Nexitally",
+    "description": siteConfig.meta.description,
+    "publisher": {
+      "@id": `${siteConfig.url}/#organization`
+    },
+    "inLanguage": "zh-CN"
+  }
+];
+
+// Append page-specific schemas if provided
+if (schema) {
+  if (Array.isArray(schema)) {
+    baseSchemas.push(...schema);
+  } else {
+    baseSchemas.push(schema);
+  }
+}
 ---
 
 <!-- Meta Tags -->
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="icon" type="image/svg+xml" href="/favicon.png" />
+<link rel="icon" type="image/png" href="/assets/logo.png" />
+<link rel="apple-touch-icon" href="/assets/logo.png" />
+<link rel="canonical" href={canonicalURL} />
+
 <title>{title}</title>
 <meta name="description" content={description} />
 <meta name="keywords" content={keywords} />
 <meta name="author" content={siteConfig.author} />
+<meta name="robots" content={robots} />
+
+<!-- Webmaster Verification Tags (Search Console & Webmaster Platforms) -->
+{siteConfig.verification?.google && (
+  <meta name="google-site-verification" content={siteConfig.verification.google} />
+)}
+{siteConfig.verification?.bing && (
+  <meta name="msvalidate.01" content={siteConfig.verification.bing} />
+)}
+{siteConfig.verification?.baidu && (
+  <meta name="baidu-site-verification" content={siteConfig.verification.baidu} />
+)}
+{siteConfig.verification?.shenma && (
+  <meta name="shenma-site-verification" content={siteConfig.verification.shenma} />
+)}
 
 <!-- Open Graph Tags -->
 <meta property="og:type" content="website" />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:url" content={url} />
-<meta property="og:image" content={ogImage} />
-<meta property="og:site_name" content={title} />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:image" content={absoluteOgImage} />
+<meta property="og:site_name" content={siteConfig.title} />
+<meta property="og:locale" content="zh_CN" />
 
 <!-- Twitter Meta Tags -->
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
-<meta name="twitter:image" content={ogImage} />
-<meta name="twitter:site" content={twitterHandle} />
-<meta name="twitter:creator" content={twitterHandle} />
+<meta name="twitter:image" content={absoluteOgImage} />
+<meta name="twitter:site" content={`@${twitterHandle}`} />
+<meta name="twitter:creator" content={`@${twitterHandle}`} />
+
+<!-- Structured Data (JSON-LD) for SEO & GEO -->
+{baseSchemas.map((s) => (
+  <script type="application/ld+json" set:html={JSON.stringify(s)} />
+))}

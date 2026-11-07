@@ -2,6 +2,7 @@
 import { getCollection, render } from "astro:content";
 import PostLayout from "@/layouts/PostLayout.astro";
 import Toc from '@/components/widgets/Toc.astro';
+import { siteConfig } from "@/config/site";
 
 // SSG 模式下的动态路由需要使用 getStaticPaths()
 // 来告诉 Astro 在构建时生成哪些页面
@@ -33,9 +34,67 @@ if (!entry) {
 
 const { Content, headings } = await render(entry);
 const filtered = headings.filter(h => h.depth <= 2);
+
+const postUrl = new URL(Astro.url.pathname, siteConfig.url).href;
+
+// Article & Breadcrumb Schema for GEO & Rich Results
+const articleSchema = {
+	"@context": "https://schema.org",
+	"@type": "TechArticle",
+	"headline": entry.data.title,
+	"description": entry.data.description,
+	"datePublished": entry.data.publishDate.toISOString(),
+	"dateModified": entry.data.publishDate.toISOString(),
+	"inLanguage": "zh-CN",
+	"mainEntityOfPage": {
+		"@type": "WebPage",
+		"@id": postUrl
+	},
+	"author": {
+		"@type": "Organization",
+		"name": "Nexitally 专线架构实验室",
+		"url": siteConfig.url
+	},
+	"publisher": {
+		"@type": "Organization",
+		"name": "Nexitally",
+		"url": siteConfig.url,
+		"logo": {
+			"@type": "ImageObject",
+			"url": `${siteConfig.url}/assets/logo.png`
+		}
+	}
+};
+
+const breadcrumbSchema = {
+	"@context": "https://schema.org",
+	"@type": "BreadcrumbList",
+	"itemListElement": [
+		{
+			"@type": "ListItem",
+			"position": 1,
+			"name": "首页",
+			"item": siteConfig.url
+		},
+		{
+			"@type": "ListItem",
+			"position": 2,
+			"name": "技术专栏",
+			"item": `${siteConfig.url}/blog/`
+		},
+		{
+			"@type": "ListItem",
+			"position": 3,
+			"name": entry.data.title,
+			"item": postUrl
+		}
+	]
+};
+
+const pageSchemas = [articleSchema, breadcrumbSchema];
 ---
 
-<PostLayout title={entry.data.title} description={entry.data.description}>
+<PostLayout title={entry.data.title} description={entry.data.description} schema={pageSchemas}>
 	<!-- Reading progress bar -->
 	<div id="reading-progress" class="reading-progress" style="transform: scaleX(0);"></div>
 
@@ -62,7 +121,7 @@ const filtered = headings.filter(h => h.depth <= 2);
 				<!-- Metadata -->
 				<div class="article-meta text-sm text-neutral-500 dark:text-neutral-400">
 					<time datetime={entry.data.publishDate.toISOString()}>
-						{entry.data.publishDate.toLocaleDateString('en-US', {
+						{entry.data.publishDate.toLocaleDateString('zh-CN', {
 							year: 'numeric',
 							month: 'long',
 							day: 'numeric'
@@ -71,7 +130,7 @@ const filtered = headings.filter(h => h.depth <= 2);
 					{entry.data.read && (
 						<>
 							<span class="article-meta-divider"></span>
-							<span>{entry.data.read} min read</span>
+							<span>约 {entry.data.read} 分钟阅读</span>
 						</>
 					)}
 				</div>

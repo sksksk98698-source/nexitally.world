@@ -1,27 +1,33 @@
-[
+﻿[
 	{
-		"name": "Home",
+		"name": "首页",
 		"url": "/"
 	},
 	{
-		"name": "Pages",
+		"name": "套餐资费",
+		"url": "/pricing"
+	},
+	{
+		"name": "专线技术",
+		"url": "/features"
+	},
+	{
+		"name": "服务支持",
 		"children": [
-			{ "name": "Features", "url": "/features" },
-			{ "name": "Pricing", "url": "/pricing" },
-			{ "name": "About", "url": "/about" },
-			{ "name": "Blog", "url": "/blog" },
-			{ "name": "Changelog", "url": "/changelog" },
-			{ "name": "Sign in", "url": "/sign-in" },
-			{ "name": "Sign up", "url": "/sign-up" },
-			{ "name": "404", "url": "/404" }
+			{ "name": "使用教程 & 博客", "url": "/blog" },
+			{ "name": "客户端下载指南", "url": "/blog/client-setup-guide" },
+			{ "name": "节点与网络状态", "url": "/status" },
+			{ "name": "常见问题 FAQ", "url": "/#faq" },
+			{ "name": "服务条款 TOS", "url": "/terms" },
+			{ "name": "隐私协议", "url": "/privacy" }
 		]
 	},
 	{
-		"name": "Elements",
-		"url": "/elements"
+		"name": "关于我们",
+		"url": "/about"
 	},
 	{
-		"name": "Contact",
+		"name": "联系客服",
 		"url": "/contact"
 	}
 ]

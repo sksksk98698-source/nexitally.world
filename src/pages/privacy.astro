@@ -1,0 +1,67 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import PageHeader from "@/components/elements/PageHeader.astro";
+import { siteConfig } from "@/config/site";
+import { ShieldCheck, Lock, EyeOff } from "@lucide/astro";
+---
+
+<Layout
+  title="隐私保护政策 — Nexitally 官方网站"
+  description="Nexitally 严格执行零日志记录（No-Logs Policy）政策，保障所有用户的专线通信数据安全与隐私主权。"
+  keywords="Nexitally隐私政策, 零日志记录, 数据安全"
+>
+  <main class="site-container py-12 md:py-20">
+    <div class="max-w-3xl mx-auto">
+      <PageHeader
+        title="隐私保护政策"
+        description="严格坚守零日志（No-Logs）原则 · 守护每一位用户的网络隐私"
+      />
+
+      <div class="mt-10 space-y-8 text-sm text-neutral-600 dark:text-neutral-300 leading-relaxed border-t border-dashed border-neutral-200 dark:border-neutral-700 pt-8">
+        <div>
+          <h2 class="text-lg font-bold text-neutral-800 dark:text-neutral-100 mb-3 flex items-center gap-2">
+            <EyeOff class="w-5 h-5 text-primary" />
+            1. 零网络活动日志原则（No-Logs Policy）
+          </h2>
+          <p>
+            Nexitally 绝不记录、追踪或存储用户在使用专线加速过程中的任何网络浏览记录、访问网址、传输内容或 DNS 查询历史。专线节点仅作为纯粹的数据通道，数据在出入境过程中均采用强加密协议（TLS 1.3）进行端到端混淆传输。
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-lg font-bold text-neutral-800 dark:text-neutral-100 mb-3 flex items-center gap-2">
+            <Lock class="w-5 h-5 text-primary" />
+            2. 账户信息与必要计费数据
+          </h2>
+          <p>
+            为确保套餐服务的正常履约，系统仅记录：
+          </p>
+          <ul class="list-disc list-inside mt-2 space-y-1 text-xs md:text-sm pl-2">
+            <li>注册电子邮箱（用于找回密码、接收账单与重大系统维护通知）</li>
+            <li>当前套餐剩余流量与订购周期起止时间</li>
+            <li>用于防止滥用和保障服务公平的连接节点匿名吞吐聚合统计（用完即焚，不与个人行为关联）</li>
+          </ul>
+        </div>
+
+        <div>
+          <h2 class="text-lg font-bold text-neutral-800 dark:text-neutral-100 mb-3 flex items-center gap-2">
+            <ShieldCheck class="w-5 h-5 text-primary" />
+            3. 数据安全与第三方声明
+          </h2>
+          <p>
+            我们绝不会向任何第三方数据经纪商、广告商出售或出租您的个人信息。所有服务器均位于具备严苛物理安全防护的国际一级数据中心，且全磁盘采用加密存储。
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-lg font-bold text-neutral-800 dark:text-neutral-100 mb-3">
+            4. 政策更新与联系
+          </h2>
+          <p>
+            本政策自 2020 年发布并持续更新。如您对本站的隐私保护机制有任何疑问，请联系官方支持邮箱：<code>{siteConfig.mail}</code>。
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>

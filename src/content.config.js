@@ -9,7 +9,7 @@ import { glob } from 'astro/loaders';
 const post = defineCollection({
 	// 使用 glob 加载器从 src/content/post 目录加载所有 .mdx 文件
 	loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/post' }),
-	// Type-check frontmatter using a schema
+	// Type-check frontmatter using a schema with passthrough for advanced SEO metadata
 	schema: z.object({
 		title: z.string(),
 		description: z.string(),
@@ -19,7 +19,7 @@ const post = defineCollection({
 		img: z.string().optional(),
 		img_alt: z.string().optional(),
 		featured: z.boolean().optional(),
-	}),
+	}).passthrough(),
 });
 
 const changelog = defineCollection({
@@ -29,7 +29,7 @@ const changelog = defineCollection({
 		publishDate: z.coerce.date(),
 		version: z.string().optional(),
 		description: z.string().optional(),
-	}),
+	}).passthrough(),
 });
 
 // 4. 导出一个 `collections` 对象来注册你的集合

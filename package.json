@@ -1,38 +1,25 @@
 {
-	"name": "ricoui-saas-template",
+	"name": "nexitally-world",
 	"type": "module",
 	"version": "1.0.0",
 	"packageManager": "pnpm@9.14.2",
-	"description": "A design-led SaaS website template built with Astro, Tailwind CSS v4, MDX, and a reusable component system.",
+	"description": "Nexitally 品牌官方落地页与专线网络服务门户",
 	"keywords": [
-		"astro",
-		"astro-template",
+		"nexitally",
+		"nexitally-world",
+		"iepl",
+		"vless",
 		"saas",
-		"saas-template",
 		"landing-page",
-		"startup",
-		"tailwindcss",
-		"tailwindcss-v4",
-		"mdx",
-		"blog",
-		"changelog",
-		"dark-mode",
-		"responsive",
-		"typescript"
+		"astro",
+		"tailwindcss"
 	],
 	"author": {
-		"name": "RicoUI",
-		"email": "hello@ricoui.com",
-		"url": "https://ricoui.com"
+		"name": "Nexitally Team",
+		"email": "support@nexitally.world",
+		"url": "https://nexitally.world"
 	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/ricocc/ricoui-saas-template.git"
-	},
-	"bugs": {
-		"url": "https://github.com/ricocc/ricoui-saas-template/issues"
-	},
-	"homepage": "https://github.com/ricocc/ricoui-saas-template#readme",
+	"homepage": "https://nexitally.world",
 	"license": "MIT",
 	"engines": {
 		"node": ">=22.12.0",
@@ -48,22 +35,22 @@
 	},
 	"devDependencies": {
 		"@astrojs/check": "^0.9.9",
-		"@biomejs/biome": "1.7.3",
-		"@tailwindcss/typography": "^0.5.13",
-		"astro": "^6.4.2",
-		"postcss": "^8.4.31",
-		"tailwindcss": "^4.1.14",
-		"typescript": "^5.4.5",
-		"vite": "^7.3.3"
+		"@biomejs/biome": "^1.7.3",
+		"@tailwindcss/typography": "^0.5.15",
+		"astro": "^5.4.2",
+		"postcss": "^8.4.49",
+		"tailwindcss": "4.1.14",
+		"typescript": "^5.6.3",
+		"vite": "^6.2.0"
 	},
 	"dependencies": {
-		"@astrojs/mdx": "^6.0.1",
-		"@astrojs/rss": "^4.0.18",
-		"@astrojs/sitemap": "^3.7.3",
-		"@lucide/astro": "^1.17.0",
-		"@tailwindcss/vite": "^4.1.14",
+		"@astrojs/mdx": "^4.1.0",
+		"@astrojs/rss": "^4.0.11",
+		"@astrojs/sitemap": "^3.2.1",
+		"@lucide/astro": "^0.477.0",
+		"@tailwindcss/vite": "4.1.14",
 		"aos": "^2.3.4",
-		"motion": "^12.23.24",
-		"sharp": "^0.34.4"
+		"motion": "^12.4.7",
+		"sharp": "^0.33.5"
 	}
 }

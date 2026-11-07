@@ -1,0 +1,92 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import PageHeader from "@/components/elements/PageHeader.astro";
+import Button from "@/components/ui/Button.astro";
+import { siteConfig } from "@/config/site";
+import { CheckCircle2, AlertCircle, Clock, Server, ShieldCheck, Activity, ArrowRight } from "@lucide/astro";
+
+const systems = [
+  { name: "香港 IEPL 核心专线骨干 (20+ 节点)", status: "Operational", uptime: "99.99%", latency: "18ms" },
+  { name: "日本 IPLC 专线组 (东京/大阪)", status: "Operational", uptime: "99.98%", latency: "38ms" },
+  { name: "新加坡东南亚中继枢纽", status: "Operational", uptime: "99.98%", latency: "48ms" },
+  { name: "美西/美东骨干网络", status: "Operational", uptime: "99.95%", latency: "135ms" },
+  { name: "台湾本地专线节点", status: "Operational", uptime: "99.99%", latency: "28ms" },
+  { name: "欧洲骨干组 (英/德/法)", status: "Operational", uptime: "99.97%", latency: "160ms" },
+  { name: "全平台客户端订阅分发 API", status: "Operational", uptime: "100%", latency: "< 5ms" },
+  { name: "用户控制台与账单鉴权系统", status: "Operational", uptime: "100%", latency: "< 10ms" },
+];
+---
+
+<Layout
+  title="服务状态监控 — Nexitally 官方网站"
+  description="实时查看 Nexitally 全球 IEPL / IPLC 专线节点、协议网关与核心系统的实时在线运行状态与网络时延。"
+  keywords="Nexitally服务状态, 专线在线率, 节点时延, 骨干网监控"
+>
+  <main class="site-container py-12 md:py-20">
+    <div class="max-w-4xl mx-auto">
+      <PageHeader
+        title="专线网络实时服务状态"
+        description="7×24 小时实时监控全球核心机房、物理专线与订阅分发服务"
+      />
+
+      <!-- Overall Status Banner -->
+      <div class="mt-10 p-6 rounded-3xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-between flex-wrap gap-4" data-aos="fade-up-xs" data-aos-once="true">
+        <div class="flex items-center gap-3.5">
+          <div class="w-10 h-10 rounded-full bg-emerald-500 text-white flex items-center justify-center flex-shrink-0 shadow-md">
+            <CheckCircle2 class="w-6 h-6" />
+          </div>
+          <div>
+            <h2 class="text-base font-bold text-neutral-900 dark:text-neutral-50">所有专线节点与核心服务运行正常</h2>
+            <p class="text-xs text-neutral-600 dark:text-neutral-300">过去 90 天全网综合可用率：<strong class="text-emerald-600 dark:text-emerald-400">99.98%</strong></p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2 text-xs text-neutral-500">
+          <Clock class="w-3.5 h-3.5" />
+          <span>每 60 秒自动心跳检测</span>
+        </div>
+      </div>
+
+      <!-- Systems Status List -->
+      <div class="mt-8 rounded-3xl border border-primary/15 dark:border-neutral-700 bg-bg-secondary dark:bg-bg-secondary-dark p-6 md:p-8 shadow-sm" data-aos="fade-up-xs" data-aos-once="true">
+        <h3 class="text-base font-bold text-neutral-800 dark:text-neutral-100 mb-6 flex items-center gap-2">
+          <Server class="w-4 h-4 text-primary" />
+          <span>核心网络集群运行明细</span>
+        </h3>
+
+        <div class="divide-y divide-neutral-100 dark:divide-neutral-800">
+          {systems.map((item) => (
+            <div class="py-4 flex items-center justify-between flex-wrap gap-3">
+              <div class="flex items-center gap-3">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-sm shadow-emerald-500/50"></span>
+                <span class="text-xs md:text-sm font-medium text-neutral-800 dark:text-neutral-200">{item.name}</span>
+              </div>
+              <div class="flex items-center gap-6 text-xs">
+                <span class="text-neutral-500">时延: <strong class="text-neutral-700 dark:text-neutral-300 font-semibold">{item.latency}</strong></span>
+                <span class="text-neutral-500 hidden sm:inline">可用率: <strong class="text-emerald-600 dark:text-emerald-400 font-semibold">{item.uptime}</strong></span>
+                <span class="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-medium">正常</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Emergency & Maintenance Notice -->
+      <div class="mt-8 p-6 rounded-2xl bg-bg-secondary dark:bg-bg-secondary-dark border border-neutral-200 dark:border-neutral-700 text-xs text-neutral-500 space-y-2">
+        <h4 class="font-bold text-neutral-700 dark:text-neutral-300 flex items-center gap-1.5">
+          <Activity class="w-4 h-4 text-primary" />
+          <span>运维保障说明</span>
+        </h4>
+        <p class="leading-relaxed">
+          Nexitally 全线物理专线节点均配置主备链路秒级无缝倒换（Failover）。若遇海底光缆施工或不可抗力，系统将智能调度至备用专线，用户端通常无感知。遇到个别节点连接异常，建议在自研客户端内使用『更新节点』或尝试测速切换。
+        </p>
+      </div>
+
+      <!-- Action -->
+      <div class="mt-10 text-center">
+        <Button url={siteConfig.registerUrl} rel="nofollow sponsored" target="_blank" type="fill" className="px-8 py-3 mx-auto">
+          进入官方控制台开通专线 <ArrowRight class="w-4 h-4 ml-1.5" />
+        </Button>
+      </div>
+    </div>
+  </main>
+</Layout>

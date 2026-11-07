@@ -1,7 +1,7 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import PageHeader from "@/components/elements/PageHeader.astro";
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 import Badge from "@/components/ui/Badge.astro";
 
 const allEntries = await getCollection("changelog");
@@ -10,7 +10,7 @@ const entries = allEntries.sort(
 );
 
 function formatDate(date: Date): string {
-  return date.toLocaleDateString("en-US", {
+  return date.toLocaleDateString("zh-CN", {
     year: "numeric",
     month: "long",
     day: "numeric",
@@ -19,76 +19,52 @@ function formatDate(date: Date): string {
 ---
 
 <Layout
-  title="Changelog — RicoFast"
-  description="Track improvements, new releases, and updates."
+  title="网络更新日志 — Nexitally 官方网站"
+  description="实时跟踪 Nexitally 专线网络扩容、客户端升级与节点部署最新进展。"
 >
   <section class="site-container my-12">
     <PageHeader
-      title="Changelog"
-      description="Track improvements and new releases."
+      title="网络更新与维护日志"
+      description="实时记录 Nexitally 核心骨干专线建设、客户端迭代与基础设施扩容历程。"
     />
   </section>
 
   <section class="site-container max-w-3xl mx-auto pb-24">
-    <div class="relative">
-      <div class="absolute left-4 md:left-6 top-0 bottom-0 w-px bg-neutral-200 dark:bg-neutral-700"></div>
+    <div class="relative border-l-2 border-primary/20 dark:border-neutral-700 ml-4 pl-8 space-y-12">
+      {
+        entries.map(async (entry) => {
+          const { Content } = await render(entry);
+          return (
+            <article class="relative group" data-aos="fade-up-xs" data-aos-once="true">
+              {/* Timeline dot */}
+              <div class="absolute -left-[41px] top-1.5 w-4 h-4 rounded-full border-2 border-bg-primary dark:border-bg-primary-dark bg-primary group-hover:scale-125 transition-transform duration-200" />
 
-      <div class="space-y-12">
-        {entries.map((entry, i) => (
-          <div
-            class="relative pl-12 md:pl-16"
-            data-aos="fade-up-sm"
-            data-aos-delay={i * 80}
-            data-aos-once="true"
-          >
-            <div class="absolute left-2.5 md:left-4.5 top-1.5 w-3 h-3 rounded-full bg-primary border-2 border-bg-primary dark:border-bg-primary-dark"></div>
+              {/* Version & Date */}
+              <div class="flex items-center gap-3 mb-2">
+                {entry.data.version && (
+                  <Badge variant="primary">{entry.data.version}</Badge>
+                )}
+                <time
+                  datetime={entry.data.publishDate.toISOString()}
+                  class="text-xs text-neutral-400 dark:text-neutral-500"
+                >
+                  {formatDate(entry.data.publishDate)}
+                </time>
+              </div>
 
-            <div class="mb-2 flex items-center gap-3 flex-wrap">
-              {entry.data.version && (
-                <Badge variant="primary" size="sm">{entry.data.version}</Badge>
-              )}
-              <time class="text-sm text-neutral-400 dark:text-neutral-500">
-                {formatDate(entry.data.publishDate)}
-              </time>
-            </div>
+              {/* Title */}
+              <h2 class="text-xl font-brand font-bold text-neutral-800 dark:text-neutral-100 mb-3">
+                {entry.data.title}
+              </h2>
 
-            <h2 class="text-xl font-semibold text-neutral-800 dark:text-neutral-100 mb-4">
-              {entry.data.title}
-            </h2>
-
-            <article class="text-sm text-neutral-600 dark:text-neutral-300 leading-relaxed changelog-content">
-              <Fragment set:html={entry.rendered?.html || ""} />
+              {/* Content */}
+              <div class="prose dark:prose-invert text-sm text-neutral-600 dark:text-neutral-300 leading-relaxed">
+                <Content />
+              </div>
             </article>
-          </div>
-        ))}
-
-        {entries.length === 0 && (
-          <p class="text-center text-neutral-400 dark:text-neutral-500 py-12">
-            No changelog entries yet.
-          </p>
-        )}
-      </div>
+          );
+        })
+      }
     </div>
   </section>
 </Layout>
-
-<style>
-  .changelog-content :global(h2) {
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--color-neutral-800);
-    margin-top: 1.25rem;
-    margin-bottom: 0.5rem;
-  }
-  :global(html.dark) .changelog-content :global(h2) {
-    color: var(--color-neutral-100);
-  }
-  .changelog-content :global(ul) {
-    list-style: disc;
-    padding-left: 1.25rem;
-    margin-bottom: 0.75rem;
-  }
-  .changelog-content :global(li) {
-    margin-bottom: 0.25rem;
-  }
-</style>

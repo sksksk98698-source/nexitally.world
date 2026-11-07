@@ -1,14 +1,18 @@
 ---
-import Layout from  "@/layouts/Layout.astro";
+import Layout from "@/layouts/Layout.astro";
+
 interface Props {
 	title?: string | undefined;
 	keywords?: string | undefined;
 	description?: string | undefined;
+	robots?: string | undefined;
+	schema?: Record<string, any> | Array<Record<string, any>> | undefined;
 }
-const { title, description,keywords} = Astro.props;
+
+const { title, description, keywords, robots, schema } = Astro.props;
 ---
 
-<Layout title={title} description={description} keywords={keywords}>
+<Layout title={title} description={description} keywords={keywords} robots={robots} schema={schema}>
   <main class="post-wrapper">
       <slot />
   </main>
