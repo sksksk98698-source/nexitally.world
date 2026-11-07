@@ -1,4 +1,4 @@
-﻿// Add your javascript here
+// Add your javascript here
 import AOS from 'aos';
 
 window.darkMode = false;
@@ -23,7 +23,7 @@ const unstickyClassesContainer = [
 ];
 let headerElement = null;
 
-document.addEventListener("DOMContentLoaded", () => {
+function initApp() {
 	headerElement = document.getElementById("header");
 
 	if (
@@ -48,7 +48,13 @@ document.addEventListener("DOMContentLoaded", () => {
 		offset: 20,
 		delay: 0,
 	});
-});
+}
+
+if (document.readyState === "loading") {
+	document.addEventListener("DOMContentLoaded", initApp);
+} else {
+	initApp();
+}
 
 // window.toggleDarkMode = function(){
 //     document.documentElement.classList.toggle('dark');
